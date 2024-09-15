@@ -1,12 +1,26 @@
 const express = require('express');
+const axios = require('axios');
 const app = express();
 const port = 3000;
 
 // SVG 생성 API
-app.get('/badge', (req, res) => {
+app.get('/badge', async (req, res) => {
     const name = req.query.name || 'Default Name';
-    const svg = `
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    
+    try {
+        // API 호출
+        const response = await axios.get(`https://api.rankit.run/api/v1/userRank/lang`, {
+            params: { username: name },
+            headers: { 'accept': '*/*' }
+        });
+        
+        console.log('API 응답:', response.data);
+
+        // API 응답에서 langName 추출
+        const favorite = response.data.langName || 'Unknown';
+
+        const svg = `
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 432 224" style="enable-background:new 0 0 432 224;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#191919;}
@@ -33,12 +47,12 @@ app.get('/badge', (req, res) => {
 			l0.2-0.7c0.1-0.3,0.2-0.4,0.5-0.3L47.4,24.5z M50.1,16L48,23.8l-1.4-0.4l2-7.5H50.1z"/>
 		<path class="st0" d="M55.1,26c-2.1,0-3-1-3-2.8v-3.8h-1.5v-1.2h1.5V16h1.4v2.2H56v1.2h-2.5v3.8c0,1,0.5,1.5,1.5,1.5h1V26H55.1z"/>
 	</g>
-	<text transform="matrix(1 0 0 1 128 53.5155)" class="st1 st2 st3">${name}’s profile</text>
-	<text transform="matrix(1 0 0 1 127.9033 86.3424)" class="st4 st5 st6">tier :</text>
+	<text transform="matrix(1 0 0 1 128 53.5155)" class="st1 st2 st3">${name}의 프로필</text>
+	<text transform="matrix(1 0 0 1 127.9033 86.3424)" class="st4 st5 st6">자주쓰는 언어 :</text>
 	<text transform="matrix(1 0 0 1 127.9031 116.1018)" class="st4 st5 st6">score :</text>
 	<text transform="matrix(1 0 0 1 127.9031 145.8605)" class="st4 st5 st6">소속 학교 :</text>
 	<text transform="matrix(1 0 0 1 127.9031 175.6202)" class="st4 st5 st6">소속 지역 :</text>
-	<text transform="matrix(1 0 0 1 267.955 86.3424)" class="st4 st5 st6">1tier</text>
+	<text transform="matrix(1 0 0 1 267.955 86.3424)" class="st4 st5 st6">${favorite}</text>
 	<text transform="matrix(1 0 0 1 267.9548 116.1018)" class="st4 st5 st6">123,456</text>
 	<text transform="matrix(1 0 0 1 267.9548 145.8605)" class="st4 st5 st6">광운대학교</text>
 	<text transform="matrix(1 0 0 1 267.9548 175.6202)" class="st4 st5 st6">경기도</text>
@@ -60,11 +74,14 @@ app.get('/badge', (req, res) => {
 </svg>
     `;
 
-    res.setHeader('Content-Type', 'image/svg+xml');
-    res.send(svg);
+        res.setHeader('Content-Type', 'image/svg+xml');
+        res.send(svg);
+    } catch (error) {
+        console.error('API 호출 오류:', error.response ? error.response.data : error.message);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
 });
- 
