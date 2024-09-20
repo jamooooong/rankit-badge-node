@@ -15,12 +15,12 @@ app.get('/badge', async (req, res) => {
         // API 응답에서 langName 추출
         const lang = userData.langName || 'Unknown';
         const score = '123,456점';
-        const ranking = '1444등';
+        const ranking = '1234등';
 
         const svg = generateSVG(name, lang, score, ranking);
 
-        // 캐시 방지를 위한 헤더 설정
-        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        // camo 캐싱 방지를 위한 헤더 설정
+        res.setHeader('Cache-Control', 'max-age=0, no-cache, no-store, must-revalidate');
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
 
