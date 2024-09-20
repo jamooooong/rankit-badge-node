@@ -15,8 +15,8 @@ app.get('/badge', async (req, res) => {
         // API 응답에서 langName 추출
         
         const lang = userData.langName || 'Unknown';
-        const score = '1,234점';
-        const ranking = '123등';
+        const score = '123,456점';
+        const ranking = '1234등';
 
         const svg = generateSVG(name, lang, score, ranking);
 
