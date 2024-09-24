@@ -1,16 +1,19 @@
 function generateSVG(name, langName, score, userRank, grade){
 
   const tierMap = {
-    yellow: require('./selTier/tierYellow').TierYellow,
-    green: require('./selTier/tierGreen').TierGreen,
-    blue : require('./selTier/tierBlue').TierBlue,
-    red: require('./selTier/tierRed').TierRed,
-    black: require('./selTier/tierBlack').TierBlack,
-    purple: require('./selTier/tierPurple').TierPurple,
-
+    yellow: require('./selTier/tierYellow').TierYellow, //6티어
+    green: require('./selTier/tierGreen').TierGreen, //5티어
+    blue : require('./selTier/tierBlue').TierBlue, //4티어
+    red: require('./selTier/tierRed').TierRed, //3티어
+    black: require('./selTier/tierBlack').TierBlack, //2티어
+    purple: require('./selTier/tierPurple').TierPurple, //1티어
   };
   
-  const tierComponent = tierMap[grade];  // propColor는 입력받은 값
+/**
+ * 티어별 이미지 표시 코드
+ */
+  
+  const tierComponent = tierMap[grade];
   
   if (!tierComponent) {
     throw new Error(`Unknown color: ${grade}`);
@@ -94,9 +97,7 @@ function generateSVG(name, langName, score, userRank, grade){
         <image width="114" height="87" transform="translate(15.74 98)" xlink:href="data:image/png;base64,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"/>
       </g>
       
-      //tier img import 해야함
-      
-    ${tierComponent}
+    ${tierComponent} //tier img import
 
       <g id="stroke">
         <g>
