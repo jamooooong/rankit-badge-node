@@ -1,7 +1,6 @@
 function generateSVG(name, langName, score, userRank, grade){
 
   const tierMap = {
-    
     yellow: require('./selTier/tierYellow').TierYellow,
     green: require('./selTier/tierGreen').TierGreen,
     blue : require('./selTier/tierBlue').TierBlue,
