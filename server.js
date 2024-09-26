@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const { getUserRank } = require('./api/api');
 const { generateSVG } = require('./src/generateSvg');
+const {generateFailSVG} = require('./src/generateFailSvg');
 
 // SVG 생성
 app.get('/badge', async (req, res) => {
@@ -27,7 +28,14 @@ app.get('/badge', async (req, res) => {
         res.setHeader('Content-Type', 'image/svg+xml');
         res.send(svg);
     } catch (error) {
-        res.status(500).send('Internal Server Error');
+        const svg = generateFailSVG();
+        res.setHeader('Cache-Control', 'max-age=0, no-cache, no-store, must-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+
+        res.setHeader('Content-Type', 'image/svg+xml');
+        res.send(svg);
+        //
     }
 });
 
