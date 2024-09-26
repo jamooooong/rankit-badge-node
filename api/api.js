@@ -2,7 +2,7 @@ const axios = require('axios');
 
 async function getUserRank(username) {
     try {
-        const response = await axios.get(`https://api.rankit.run/api/v1/userRank/lang`, {
+        const response = await axios.get(`https://api.rankit.run/api/v1/badge/get`, {
             params: { username },
             headers: { 'accept': '*/*' }
         });

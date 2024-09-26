@@ -1,12 +1,12 @@
 function generateSVG(name, langName, score, userRank, grade){
-
+  //티어별로 나오는 이미지를 맵핑
   const tierMap = {
-    yellow: require('./selTier/tierYellow').TierYellow, //6티어
-    green: require('./selTier/tierGreen').TierGreen, //5티어
-    blue : require('./selTier/tierBlue').TierBlue, //4티어
-    red: require('./selTier/tierRed').TierRed, //3티어
-    black: require('./selTier/tierBlack').TierBlack, //2티어
-    purple: require('./selTier/tierPurple').TierPurple, //1티어
+    YELLOW: require('./selTier/tierYellow').TierYellow, //6티어
+    GREEN: require('./selTier/tierGreen').TierGreen, //5티어
+    BLUE : require('./selTier/tierBlue').TierBlue, //4티어
+    RED: require('./selTier/tierRed').TierRed, //3티어
+    BLACK: require('./selTier/tierBlack').TierBlack, //2티어
+    PURPLE: require('./selTier/tierPurple').TierPurple, //1티어
   };
   
 /**

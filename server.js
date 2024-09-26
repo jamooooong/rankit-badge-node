@@ -4,7 +4,7 @@ const port = 3000;
 const { getUserRank } = require('./api/api');
 const { generateSVG } = require('./src/generateSvg');
 
-// SVG 생성 API
+// SVG 생성
 app.get('/badge', async (req, res) => {
     const name = req.query.name || 'Default Name';
     
@@ -12,11 +12,11 @@ app.get('/badge', async (req, res) => {
         // API 호출
         const userData = await getUserRank(name);
         
-        // API 응답에서 langName 추출
-        const langName =  '으으으';
-        const score = '스스스';
-        const userRank = '123등';
-        const grade = 'purple';
+        // API 응답에서 langName, score, userRank, grade 추출
+        const langName =  userData.langName;
+        const score = userData.score +' 점';
+        const userRank = userData.userRank+' 등';
+        const grade = userData.grade;
         const svg = generateSVG(name, langName, score, userRank, grade);
         
         // camo 캐싱 방지를 위한 헤더 설정 
