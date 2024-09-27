@@ -1,7 +1,7 @@
 function generateFailSVG(){
    
     return`
-<svg id="_레이어_2" data-name="레이어 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 182.89 190.34" width="184" height="191">
+<svg id="_layer_2" data-name="layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 182.89 190.34" width="184" height="191">
   <defs>
     <style>
       .cls-1 {
@@ -25,7 +25,7 @@ function generateFailSVG(){
       }
     </style>
   </defs>
-  <g id="_레이어_1-2" data-name="레이어 1">
+  <g id="_layer_1-2" data-name="layer 1">
     <g>
       <g>
         <g>
