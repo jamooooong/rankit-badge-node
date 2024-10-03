@@ -89,6 +89,35 @@ function generateSVG(name, langName, score, userRank, grade){
       fill: #222;
       font-size: 12px;
     }
+
+    @keyframes textStroke {
+      0% {
+        fill: rgba(255,255,255,0);
+        stroke: rgba(255,255,255,1);
+        stroke-width: 0.5;
+        stroke-dashoffset: 100%;
+        stroke-dasharray: 0 100%;
+      }
+      70% {
+        fill: rgba(255,255,255,0);
+        stroke: rgba(255,255,255,1);
+      }
+      80% {
+        fill: rgba(255,255,255,0);
+        stroke: rgba(255,255,255,1);
+      }
+      100% {
+        fill: rgba(255,255,255,1);
+        stroke: rgba(255,255,255,1);
+        stroke-width: 0;
+        stroke-dashoffset: 0;
+        stroke-dasharray: 100% 0;
+      }
+    }
+    
+    .animated-text {
+      animation: textStroke 3s ease-out forwards;
+    }
   </style>
 </defs>
 <g id="_layer_1-2" data-name="layer 1">
@@ -105,7 +134,7 @@ function generateSVG(name, langName, score, userRank, grade){
         <path class="cls-2" d="M29.06,113.4l134.79,18.12-2,14.87c-.73,5.44-5.41,9.54-10.89,9.54-.49,0-.99-.03-1.48-.1l-112.98-15.19c-2.91-.39-5.5-1.89-7.28-4.23-1.78-2.34-2.55-5.23-2.16-8.14l2-14.87m-.86-1.12l-2.13,15.86c-.88,6.57,3.73,12.61,10.29,13.49l112.98,15.19c.54,.07,1.08,.11,1.61,.11,5.92,0,11.07-4.38,11.88-10.4l2.13-15.86L28.2,112.28h0Z"/>
         <path class="cls-2" d="M40.2,30.59l134.79,18.12-11.06,82.26L29.13,112.84,40.2,30.59m-.86-1.12l-11.33,84.24,136.77,18.39,11.33-84.24L39.34,29.46h0Z"/>
       </g>
-      <text id="score-input" class="cls-7" transform="translate(109.92 29.93) rotate(7.66)"  text-anchor="middle" alignment-baseline="middle" ><tspan x="0" y="0">${score}</tspan></text>
+      <text id="score-input" class="cls-7 animated-text" transform="translate(109.92 29.93) rotate(7.66)"  text-anchor="middle" alignment-baseline="middle" ><tspan x="0" y="0">${score}</tspan></text>
     </g>
     <g>
       <g id="bg-1">
@@ -126,8 +155,8 @@ function generateSVG(name, langName, score, userRank, grade){
         <path class="cls-2" d="M141.5,158.84v15c0,6.07-4.93,11-11,11H16.5c-6.07,0-11-4.93-11-11v-15H141.5m1-1H4.5v16c0,6.63,5.37,12,12,12h114c6.63,0,12-5.37,12-12v-16h0Z"/>
         <path class="cls-2" d="M141.5,75.28v83H5.5V75.28H141.5m1-1H4.5v85H142.5V74.28h0Z"/>
       </g>
-      <text id="id-input" class="cls-7" transform="translate(73.98 66.32)" text-anchor="middle" alignment-baseline="middle"><tspan x="0" y="0">${name}</tspan></text>
-      <text id="ranking-input" class="cls-5" transform="translate(134.82 176.36)" text-anchor="end" alignment-baseline="middle"><tspan x="0" y="0">${userRank}</tspan></text>
+      <text id="id-input" class="cls-7 animated-text" transform="translate(73.98 66.32)" text-anchor="middle" alignment-baseline="middle"><tspan x="0" y="0">${name}</tspan></text>
+      <text id="ranking-input" class="cls-5 animated-text" transform="translate(134.82 176.36)" text-anchor="end" alignment-baseline="middle"><tspan x="0" y="0">${userRank}</tspan></text>
       <g id="rankit-logo">
         <path class="cls-4" d="M12.88,176.25v-5.03c0-1.8,.91-2.76,3.02-2.76h.89v1.24h-.96c-1.05,0-1.55,.55-1.55,1.52v5.03h-1.41Z"/>
         <path class="cls-4" d="M19.74,176.25c-1.55,0-2.11-.62-2.11-1.8v-1.35c0-1.18,.56-1.8,2.11-1.8h3.6v-.94c0-.48-.21-.69-.7-.69h-4.47v-1.22h4.47c1.55,0,2.11,.62,2.11,1.8v4.2c0,1.18-.56,1.8-2.11,1.8h-2.89Zm3.6-3.73h-3.6c-.49,0-.7,.21-.7,.69v1.13c0,.48,.21,.69,.7,.69h2.89c.49,0,.7-.21,.7-.69v-1.82Z"/>
@@ -136,7 +165,7 @@ function generateSVG(name, langName, score, userRank, grade){
         <path class="cls-2" d="M44.32,174.75c.34,.09,.39,.17,.3,.51l-.18,.67c-.09,.33-.18,.38-.52,.29l-.68-.18c-.34-.09-.39-.17-.3-.51l.18-.67c.09-.33,.18-.38,.52-.29l.68,.18Zm2.7-8.49l-2.13,7.83-1.4-.37,2.03-7.46h1.51Z"/>
         <path class="cls-4" d="M51.99,176.25c-2.11,0-3.02-.97-3.02-2.76v-3.79h-1.52v-1.24h1.52v-2.2h1.41v2.2h2.5v1.24h-2.5v3.79c0,.97,.49,1.52,1.55,1.52h.96v1.24h-.89Z"/>
       </g>
-      <text id="lang-input" class="cls-1" transform="translate(73.98 88.7)" text-anchor="middle" alignment-baseline="middle"><tspan x="0" y="0">${langName}</tspan></text>
+      <text id="lang-input" class="cls-1 animated-text" transform="translate(73.98 88.7)" text-anchor="middle" alignment-baseline="middle"><tspan x="0" y="0">${langName}</tspan></text>
     </g>
     <text class="cls-3" transform="translate(163.2 105.2) rotate(-82.34)"><tspan x="0" y="0">click Me!</tspan></text>
   </g>
